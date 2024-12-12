@@ -26,18 +26,17 @@ export class LoginComponent {
       console.log(username);
       console.log(password);
 
-      const user = this.mockdata.users.find(
-        (u) => u.username === username && u.password === password
-      )
-      if (user) {
-        this.authService.setCurrentUser(user);
-        if (user.role === 'admin') {
-          this.router.navigate(['/addUser']);
+      this.authService.login(username, password).subscribe((loginResult) => {
+        if (loginResult.success) {
+          if (loginResult.user.role === 'admin') {
+            this.router.navigate(['/addUser']); 
+          } else {
+            // I have to redirect normal user later
+          }
+        } else {
+          console.log('Login failed: ' + loginResult.message);
         }
-        console.log("Login was successful");
-      } else {
-        console.log("User doens't exist.")
-      }
+      });
     }
 
   }

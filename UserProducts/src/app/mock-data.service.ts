@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,9 @@ export class MockDataService {
 
   addUser(user: any) {
     this.users.push({ ...user, id: this.users.length + 1 });
+  }
+
+  getUsers(): Observable<any[]> {
+    return of(this.users); 
   }
 }
