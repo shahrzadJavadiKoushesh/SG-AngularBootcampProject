@@ -13,8 +13,10 @@ export class MockDataService {
 
   constructor() { }
 
-  addUser(user: any) {
-    this.users.push({ ...user, id: this.users.length + 1 });
+  addUser(user: any): Observable<any> {
+    const newUser = { ...user, id: this.users.length + 1 };
+    this.users.push(newUser);
+    return of(newUser); 
   }
 
   getUsers(): Observable<any[]> {

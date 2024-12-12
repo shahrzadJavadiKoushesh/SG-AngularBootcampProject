@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MockDataService } from '../mock-data.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-add-user',
@@ -29,8 +30,13 @@ export class AddUserComponent {
     if (this.userForm.valid) {
       const newUser = this.userForm.value;
       console.log('User added:', newUser);
-      this.mockdata.addUser(newUser);
-      console.log(this.mockdata.users)
+      this.mockdata.addUser(newUser).subscribe((d) => {
+        console.log('User added successfully:', d);
+        this.userForm.reset();
+      }, 
+    (error) => {
+      console.error('Error adding user:', error); 
+    })
     }
   }
 }
