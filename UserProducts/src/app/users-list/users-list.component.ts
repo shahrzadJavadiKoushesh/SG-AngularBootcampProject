@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MockDataService } from '../mock-data.service';
 import { AuthService } from '../auth.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss'
 })
