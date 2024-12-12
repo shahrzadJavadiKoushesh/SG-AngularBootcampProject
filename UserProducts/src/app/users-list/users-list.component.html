@@ -23,7 +23,9 @@
                 <td>{{ user.role }}</td>
                 @if(isAdmin){
                     <td>
-                        <button (click)="deleteUser(user.id)">Delete</button>
+                        @if(user.id !== currentUser.id ){
+                            <button (click)="deleteUser(user.id)">Delete</button>
+                        }
                         <button>Edit</button>
                     </td>
                 }

@@ -13,11 +13,13 @@ export class UsersListComponent implements OnInit {
 
   users: any[] = [];
   isAdmin: boolean = false;
+  currentUser: any;
 
   constructor(private mockdata: MockDataService, private authService: AuthService){}
 
   ngOnInit(): void {
     this.isAdmin = this.authService.getCurrentUser()?.role === 'admin';
+    this.currentUser = this.authService.getCurrentUser();
     this.fetchUsers();
   }
 
