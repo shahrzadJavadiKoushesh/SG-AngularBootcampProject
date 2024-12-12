@@ -23,7 +23,7 @@
                 <td>{{ user.role }}</td>
                 @if(isAdmin){
                     <td>
-                        <button>Delete</button>
+                        <button (click)="deleteUser(user.id)">Delete</button>
                         <button>Edit</button>
                     </td>
                 }

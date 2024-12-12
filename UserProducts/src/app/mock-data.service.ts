@@ -19,6 +19,11 @@ export class MockDataService {
     return of(newUser); 
   }
 
+  deleteUser(id: number): Observable<any>{
+    this.users = this.users.filter((u) => u.id !== id);
+    return of({ success: true });
+  }
+
   getUsers(): Observable<any[]> {
     return of(this.users); 
   }
