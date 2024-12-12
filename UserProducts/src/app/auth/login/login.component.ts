@@ -29,9 +29,10 @@ export class LoginComponent {
       this.authService.login(username, password).subscribe((loginResult) => {
         if (loginResult.success) {
           if (loginResult.user.role === 'admin') {
-            this.router.navigate(['/addUser']); 
+            this.router.navigate(['/usersList']); 
           } else {
-            // I have to redirect normal user later
+            // For now redirect both to the users list page
+            this.router.navigate(['/usersList']); 
           }
         } else {
           console.log('Login failed: ' + loginResult.message);

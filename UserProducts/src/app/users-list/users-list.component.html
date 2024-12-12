@@ -1,0 +1,37 @@
+<div>
+    <h1>User List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Family Name</th>
+                <th>Username</th>
+                <th>Role</th>
+                @if(isAdmin){
+                <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for(user of users; track user.id){
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.familyName }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+                @if(isAdmin){
+                    <td>
+                        <button>Delete</button>
+                        <button>Edit</button>
+                    </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+    @if(isAdmin){
+    <button routerLink="/addUser">Add User</button>
+    }
+</div>
