@@ -34,4 +34,13 @@ export class AuthService {
   setCurrentUser(user: any) {
     localStorage.setItem(this.currentUserKey, JSON.stringify(user));
   }
+
+  getCurrentUser(): any {
+    const user = localStorage.getItem(this.currentUserKey);
+    if (user){
+      return JSON.parse(user); 
+    } else{
+      return null;
+    }
+  }
 }

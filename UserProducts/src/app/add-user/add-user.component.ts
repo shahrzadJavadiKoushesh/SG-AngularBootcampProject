@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MockDataService } from '../mock-data.service';
-import { error } from 'console';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -13,7 +13,7 @@ export class AddUserComponent {
 
   userForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private mockdata: MockDataService){
+  constructor(private fb: FormBuilder, private mockdata: MockDataService, private router: Router){
     this.userForm = this.fb.group({
       // later I have to add custom validators
       name: ['', Validators.required],
@@ -33,6 +33,7 @@ export class AddUserComponent {
       this.mockdata.addUser(newUser).subscribe((d) => {
         console.log('User added successfully:', d);
         this.userForm.reset();
+        this.router.navigate(['/usersList'], { state: { refresh: true } });
       }, 
     (error) => {
       console.error('Error adding user:', error); 
