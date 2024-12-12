@@ -18,7 +18,7 @@ export class AuthService {
 
   login(username: string, password: string) {
     if (username === this.user1.username && password === this.user1.password) {
-      const user = { username: 'shahrzad', role: '123456' };
+      const user = { username: 'shahrzad', role: 'admin' };
       this.setToken('mocked-token');
       this.setCurrentUser(user);
       return { success: true, user };
