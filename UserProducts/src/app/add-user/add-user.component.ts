@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MockDataService } from '../mock-data.service';
 
 @Component({
   selector: 'app-add-user',
@@ -11,7 +12,7 @@ export class AddUserComponent {
 
   userForm: FormGroup;
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private mockdata: MockDataService){
     this.userForm = this.fb.group({
       // later I have to add custom validators
       name: ['', Validators.required],
@@ -28,6 +29,8 @@ export class AddUserComponent {
     if (this.userForm.valid) {
       const newUser = this.userForm.value;
       console.log('User added:', newUser);
+      this.mockdata.addUser(newUser);
+      console.log(this.mockdata.users)
     }
   }
 }
