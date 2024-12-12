@@ -9,7 +9,7 @@
                 <th>Username</th>
                 <th>Role</th>
                 @if(isAdmin){
-                    <th>Actions</th>
+                <th>Actions</th>
                 }
             </tr>
         </thead>
@@ -21,16 +21,18 @@
                 <td>{{ user.familyName }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.role }}</td>
-                <!-- <td *ngIf="isAdmin">
-                        <button (click)="deleteUser(user.id)">Delete</button>
-                        <button [routerLink]="['/users/edit', user.id]">Edit</button>
-                    </td> -->
+                @if(isAdmin){
+                    <td>
+                        <button>Delete</button>
+                        <button>Edit</button>
+                    </td>
+                }
             </tr>
             }
 
         </tbody>
     </table>
     @if(isAdmin){
-        <button routerLink="/users/add">Add User</button>
+    <button routerLink="/users/add">Add User</button>
     }
 </div>
