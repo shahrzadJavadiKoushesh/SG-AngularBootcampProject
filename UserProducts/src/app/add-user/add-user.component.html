@@ -10,7 +10,10 @@
         </div>
         <div>
             <label for="role">role</label>
-            <input id="role" formControlName="role" type="text" />
+            <select formControlName="role" id="role">
+                <option value="admin">admin user</option>
+                <option value="normal">normal user</option>
+            </select>
         </div>
         <div>
             <label for="nationalCode">National Code</label>
