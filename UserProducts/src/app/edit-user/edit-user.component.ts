@@ -20,6 +20,7 @@ export class EditUserComponent implements OnInit {
       role: ['', Validators.required],
       nationalCode: ['', Validators.required],
       phoneNumber: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -35,7 +36,8 @@ export class EditUserComponent implements OnInit {
 
   onSubmitEdit(): void{
     if (this.userForm.valid && this.userId){
-      const updatedUser = { id: this.userId, ...this.userForm.value };
+      const username = this.userForm.getRawValue().username;
+      const updatedUser = { id: this.userId, username, ...this.userForm.value };
       this.mockdata.updateUser(updatedUser).subscribe(() => {
         console.log("User Updaged");
         this.router.navigate(['/usersList']);
