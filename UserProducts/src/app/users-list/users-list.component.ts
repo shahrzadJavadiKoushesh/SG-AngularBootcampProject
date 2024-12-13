@@ -13,11 +13,13 @@ export class UsersListComponent implements OnInit {
 
   users: any[] = [];
   isAdmin: boolean = false;
+  currentUser: any;
 
   constructor(private mockdata: MockDataService, private authService: AuthService){}
 
   ngOnInit(): void {
     this.isAdmin = this.authService.getCurrentUser()?.role === 'admin';
+    this.currentUser = this.authService.getCurrentUser();
     this.fetchUsers();
   }
 
@@ -25,6 +27,16 @@ export class UsersListComponent implements OnInit {
     this.mockdata.getUsers().subscribe((users) => {
       this.users = users;
     });
+  }
+
+  deleteUser(id: number): void{
+    if (this.isAdmin){
+      this.mockdata.deleteUser(id).subscribe(() => {
+        console.log("User with id " + id + " deleted");
+        this.fetchUsers();
+      })
+    }
+
   }
 
 }
