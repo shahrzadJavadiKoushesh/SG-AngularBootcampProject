@@ -26,7 +26,7 @@
                         @if(user.id !== currentUser.id ){
                             <button (click)="deleteUser(user.id)">Delete</button>
                         }
-                        <button>Edit</button>
+                        <button [routerLink]="['/editUser', user.id]">Edit</button>
                     </td>
                 }
             </tr>

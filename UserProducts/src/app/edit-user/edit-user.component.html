@@ -1,0 +1,45 @@
+<div class="editUser-container">
+    <h1>Edit User</h1>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmitEdit()">
+        <div>
+            <label for="name">Name:</label>
+            <input id="name" formControlName="name" type="text" />
+        </div>
+
+        <div>
+            <label for="familyName">Family Name:</label>
+            <input id="familyName" formControlName="familyName" type="text" />
+        </div>
+
+        <div>
+            <label for="role">Role:</label>
+            <select id="role" formControlName="role">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="nationalCode">National Code:</label>
+            <input id="nationalCode" formControlName="nationalCode" type="text" />
+        </div>
+
+        <div>
+            <label for="phoneNumber">Phone Number:</label>
+            <input id="phoneNumber" formControlName="phoneNumber" type="text" />
+        </div>
+
+        <div class="username">
+            <label for="username">Username:</label>
+            <input id="username" formControlName="username" type="text" >
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input id="password" formControlName="password" type="password" />
+        </div>
+
+        <button type="submit">Save Changes</button>
+        <button type="button" (click)="router.navigate(['/usersList'])">Cancel</button>
+    </form>
+</div>
