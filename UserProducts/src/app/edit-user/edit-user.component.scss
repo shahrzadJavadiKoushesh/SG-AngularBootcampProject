@@ -1,0 +1,30 @@
+.editUser-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+
+        label {
+            margin: 5px 0;
+        }
+
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: 1px solid;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MockDataService } from '../mock-data.service';
 
 @Component({
   selector: 'app-edit-user',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.scss'
 })
@@ -13,7 +13,7 @@ export class EditUserComponent implements OnInit {
   userForm: FormGroup;
   userId: number | null = null;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private mockdata: MockDataService, private router: Router){
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private mockdata: MockDataService, public router: Router){
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       familyName: ['', Validators.required],
