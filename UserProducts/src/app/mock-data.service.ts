@@ -27,4 +27,10 @@ export class MockDataService {
   getUsers(): Observable<any[]> {
     return of(this.users); 
   }
+
+  updateUser(updatedUser: any): Observable<any>{
+    const index = this.users.findIndex((user) => user.id === updatedUser.id);
+    this.users[index] = updatedUser;
+    return of(updatedUser);
+  }
 }
