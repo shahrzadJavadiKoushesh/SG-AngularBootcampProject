@@ -1,0 +1,19 @@
+<div class="addUser-container">
+    <form [formGroup]="ProductForm" (ngSubmit)="onSubmitAddProduct()">
+        <div>
+            <label for="name">Name</label>
+            <input id="name" formControlName="name" type="text" />
+        </div>
+        <div>
+            <label for="code">Code</label>
+            <input id="code" formControlName="code" type="number" />
+        </div>
+        
+        <div>
+            <label for="weight">Weight</label>
+            <input id="weight" formControlName="weight" type="number" />
+        </div>
+        
+        <button type="submit" [disabled]="ProductForm.invalid">Add Product</button>
+    </form>
+</div>

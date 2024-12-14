@@ -11,7 +11,14 @@ export class MockDataService {
     { id: 2, name: 'Jane', familyName: 'Smith', role: 'user', nationalCode: '9876543210', phoneNumber: '987654321', username: 'user', password: 'user123' },
   ];
 
+  products = [
+    {id: 1, name: 'p1', code: 100, weight: 20},
+    {id: 2, name: 'p2', code: 101, weight: 25},
+  ]
+
   constructor() { }
+
+  // Users
 
   addUser(user: any): Observable<any> {
     const newUser = { ...user, id: this.users.length + 1 };
@@ -33,4 +40,17 @@ export class MockDataService {
     this.users[index] = updatedUser;
     return of(updatedUser);
   }
+
+  // Products
+  addProduct(product: any): Observable<any>{
+    const newProduct = { ...product, id: this.products.length + 1 };
+    this.products.push(newProduct);
+    this.users.push(newProduct);
+    return of(newProduct); 
+  }
+
+  getProducts(): Observable<any>{
+    return of (this.products);
+  }
+
 }
