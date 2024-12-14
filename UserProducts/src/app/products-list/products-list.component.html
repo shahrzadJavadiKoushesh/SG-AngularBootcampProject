@@ -1,0 +1,37 @@
+<div>
+    <h1>User List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Weight</th>
+                @if(isAdmin){
+                <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for(product of products; track product.id){
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.code }}</td>
+                <td>{{ product.weight }}</td>
+                @if(isAdmin){
+                    <td>
+                        @if(product.id !== currentUser.id ){
+                            <button (click)="deleteProduct(product.id)">Delete</button>
+                        }
+                        <!-- <button [routerLink]="['/editUser', user.id]">Edit</button> -->
+                    </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+    @if(isAdmin){
+    <button routerLink="/api/addProducts">Add Product</button>
+    }
+</div>
