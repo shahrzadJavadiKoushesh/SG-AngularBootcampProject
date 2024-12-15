@@ -19,7 +19,7 @@ export class AddUserComponent {
       // later I have to add custom validators
       name: ['', Validators.required],
       familyName: ['', Validators.required],
-      role: ['', Validators.required],
+      role: [, Validators.required],
       nationalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       phoneNumber: ['', Validators.required],
       username: ['', Validators.required],
@@ -32,7 +32,7 @@ export class AddUserComponent {
       const newUser = {
         username: this.userForm.value.username,
         password: this.userForm.value.password,
-        role: this.userForm.value.role,
+        role: Number(this.userForm.value.role),
         firstName: this.userForm.value.name,
         lastName: this.userForm.value.familyName,
         nationalCode: this.userForm.value.nationalCode,
