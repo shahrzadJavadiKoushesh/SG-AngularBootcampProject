@@ -39,4 +39,19 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
+  deleteProduct(productId: number): void {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.authService.deleteProduct(productId).subscribe(
+        () => {
+          console.log('product deleted successfully');
+          this.fetchProducts(); 
+        },
+        (error) => {
+          console.error('Error deleting product:', error);
+          alert('Failed to delete product. Please try again.');
+        }
+      );
+    }
+  }
+
 }

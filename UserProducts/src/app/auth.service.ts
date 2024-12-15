@@ -89,5 +89,11 @@ export class AuthService {
       headers: this.getHeaders(),
     });
   }
+
+  deleteProduct(pId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/products/${pId}`, {
+      headers: this.getHeaders(),
+    });
+  }
   
 }

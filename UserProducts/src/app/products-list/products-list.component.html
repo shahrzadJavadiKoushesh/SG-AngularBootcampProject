@@ -22,7 +22,7 @@
                 @if(isAdmin){
                     <td>
                         @if(product.id !== currentUser.id ){
-                            <button>Delete</button>
+                            <button (click)="deleteProduct(product.id)">Delete</button>
                         }
                         <button [routerLink]="['/editProduct', product.id]">Edit</button>
                     </td>
