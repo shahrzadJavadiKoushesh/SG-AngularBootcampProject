@@ -37,5 +37,20 @@ export class UsersListComponent implements OnInit {
         console.error('Error fetching users:', err);
       }
     });
-  }  
+  }
+  
+  deleteUser(userId: number): void {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.authService.deleteUser(userId).subscribe(
+        () => {
+          console.log('User deleted successfully');
+          this.fetchUsers(); 
+        },
+        (error) => {
+          console.error('Error deleting user:', error);
+          alert('Failed to delete user. Please try again.');
+        }
+      );
+    }
+  }
 }

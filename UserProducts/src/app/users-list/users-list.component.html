@@ -17,7 +17,7 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.role }}</td>
                 <td *ngIf="isAdmin">
-                    <button *ngIf="user.id !== currentUser.id">Delete</button>
+                    <button (click)="deleteUser(user.id)" *ngIf="user.id !== currentUser.id">Delete</button>
                     <button [routerLink]="['/editUser', user.id]">Edit</button>
                 </td>
             </tr>

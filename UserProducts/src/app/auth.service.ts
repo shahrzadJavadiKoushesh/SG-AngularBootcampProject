@@ -66,5 +66,11 @@ export class AuthService {
       headers: this.getHeaders(),
     });
   }
+
+  deleteUser(userId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/users/${userId}`, {
+      headers: this.getHeaders(),
+    });
+  }
   
 }
