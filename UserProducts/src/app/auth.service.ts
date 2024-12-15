@@ -7,6 +7,7 @@ import { map, Observable } from 'rxjs';
 })
 export class AuthService {
 
+  private baseUrl = 'http://localhost:3000/api';
   private tokenKey = 'authToken';
   private currentUserKey = 'currentUser';
 

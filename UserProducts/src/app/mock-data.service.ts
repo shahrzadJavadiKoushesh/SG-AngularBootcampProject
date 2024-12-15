@@ -53,4 +53,9 @@ export class MockDataService {
     return of (this.products);
   }
 
+  deleteProduct(id: number): Observable<any>{
+    this.products = this.products.filter((u) => u.id !== id);
+    return of({ success: true });
+  }
+
 }

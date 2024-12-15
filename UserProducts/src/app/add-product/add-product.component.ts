@@ -28,7 +28,7 @@ export class AddProductComponent {
       console.log("Product added: " + newProduct);
       this.mockdata.addProduct(newProduct).subscribe((d) => {
         this.ProductForm.reset();
-        // later redirect to products list
+        this.router.navigate(['/api/products'], {state: {refresh: true}})
       }, 
       (error) => {
         console.log("Error adding product", error);
