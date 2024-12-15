@@ -77,5 +77,17 @@ export class AuthService {
       headers: this.getHeaders(),
     });
   } 
+
+  updateProduct(product: any): Observable<any>{
+    return this.http.put(`${this.baseUrl}/products`, product, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  getProductById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/products/${id}`, {
+      headers: this.getHeaders(),
+    });
+  }
   
 }

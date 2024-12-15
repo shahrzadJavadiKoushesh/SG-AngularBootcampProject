@@ -1,1 +1,22 @@
-<p>edit-product works!</p>
+<div class="editUser-container">
+    <h1>Edit User</h1>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmitEdit()">
+        <div>
+            <label for="name">Name:</label>
+            <input id="name" formControlName="name" type="text" />
+        </div>
+
+        <div>
+            <label for="code">Code:</label>
+            <input id="code" formControlName="code" type="number" />
+        </div>
+
+        <div>
+            <label for="weight">Weight:</label>
+            <input id="weight" formControlName="weight" type="number" />
+        </div>
+
+        <button type="submit" (click)="onSubmitEdit()">Save Changes</button>
+        <button type="button" (click)="router.navigate(['/productsList'])">Cancel</button>
+    </form>
+</div>
