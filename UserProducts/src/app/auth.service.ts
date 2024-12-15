@@ -12,7 +12,7 @@ export class AuthService {
   private tokenKey!: string;
   private currentUserKey = 'currentUser';
 
-  constructor(protected http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<{ sessionId: string }>(`${this.baseUrl}/auth`, { username, password })
