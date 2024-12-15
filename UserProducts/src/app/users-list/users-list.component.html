@@ -13,13 +13,12 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of users;">
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.familyName }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.role }}</td>
                 <td *ngIf="isAdmin">
-                    <!-- <button *ngIf="user.id !== currentUser.id" (click)="deleteUser(user.id)">Delete</button> -->
+                    <button *ngIf="user.id !== currentUser.id">Delete</button>
                     <button [routerLink]="['/editUser', user.id]">Edit</button>
                 </td>
             </tr>

@@ -38,16 +38,4 @@ export class UsersListComponent implements OnInit {
       }
     });
   }  
-  
-
-  // deleteUser(id: number): void{
-  //   if (this.isAdmin){
-  //     this.mockdata.deleteUser(id).subscribe(() => {
-  //       console.log("User with id " + id + " deleted");
-  //       this.fetchUsers();
-  //     })
-  //   }
-
-  // }
-
 }

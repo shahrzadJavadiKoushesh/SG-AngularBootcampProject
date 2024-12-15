@@ -9,7 +9,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AuthService {
 
   private baseUrl = 'http://localhost:3000/api';
-  private tokenKey!: string;
+  private tokenKey!: string; 
+
   private currentUserKey = 'currentUser';
 
   constructor(public http: HttpClient) { }
@@ -23,7 +24,6 @@ export class AuthService {
         })
       );
   }
-
 
   setToken(token: string) {
     localStorage.setItem(this.tokenKey, token);
@@ -48,4 +48,10 @@ export class AuthService {
       headers: this.getHeaders(),
     });
   }
+
+  addUser(user: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users`, user, {
+      headers: this.getHeaders(),
+    });
+  }  
 }
