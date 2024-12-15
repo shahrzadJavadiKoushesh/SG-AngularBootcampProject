@@ -53,5 +53,18 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/users`, user, {
       headers: this.getHeaders(),
     });
-  }  
+  } 
+  
+  getUserById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/${id}`, {
+      headers: this.getHeaders(),
+    });
+  }
+  
+  updateUser(user: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/users`, user, {
+      headers: this.getHeaders(),
+    });
+  }
+  
 }

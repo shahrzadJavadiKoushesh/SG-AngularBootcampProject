@@ -14,8 +14,8 @@
         <div>
             <label for="role">Role:</label>
             <select id="role" formControlName="role">
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option [value]=1>Admin</option>
+                <option [value]=0>User</option>
             </select>
         </div>
 
@@ -39,7 +39,7 @@
             <input id="password" formControlName="password" type="password" />
         </div>
 
-        <button type="submit">Save Changes</button>
+        <button type="submit" (click)="onSubmitEdit()">Save Changes</button>
         <button type="button" (click)="router.navigate(['/usersList'])">Cancel</button>
     </form>
 </div>
