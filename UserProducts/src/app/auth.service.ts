@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MockDataService } from './mock-data.service';
 import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -69,6 +68,30 @@ export class AuthService {
 
   deleteUser(userId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/users/${userId}`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  addProduct(product: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/products`, product, {
+      headers: this.getHeaders(),
+    });
+  } 
+
+  updateProduct(product: any): Observable<any>{
+    return this.http.put(`${this.baseUrl}/products`, product, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  getProductById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/products/${id}`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  deleteProduct(pId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/products/${pId}`, {
       headers: this.getHeaders(),
     });
   }

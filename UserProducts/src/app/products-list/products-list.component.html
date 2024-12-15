@@ -24,7 +24,7 @@
                         @if(product.id !== currentUser.id ){
                             <button (click)="deleteProduct(product.id)">Delete</button>
                         }
-                        <!-- <button [routerLink]="['/editUser', user.id]">Edit</button> -->
+                        <button [routerLink]="['/editProduct', product.id]">Edit</button>
                     </td>
                 }
             </tr>
@@ -32,6 +32,6 @@
         </tbody>
     </table>
     @if(isAdmin){
-    <button routerLink="/api/addProducts">Add Product</button>
+    <button routerLink="/addProduct">Add Product</button>
     }
 </div>
