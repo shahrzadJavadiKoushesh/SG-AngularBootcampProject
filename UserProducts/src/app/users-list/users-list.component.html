@@ -3,37 +3,25 @@
     <table border="1">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Family Name</th>
                 <th>Username</th>
                 <th>Role</th>
-                @if(isAdmin){
-                <th>Actions</th>
-                }
+                <th *ngIf="isAdmin">Actions</th>
             </tr>
         </thead>
         <tbody>
-            @for(user of users; track user.id){
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.familyName }}</td>
+            <tr *ngFor="let user of users;">
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.role }}</td>
-                @if(isAdmin){
-                    <td>
-                        @if(user.id !== currentUser.id ){
-                            <button (click)="deleteUser(user.id)">Delete</button>
-                        }
-                        <button [routerLink]="['/editUser', user.id]">Edit</button>
-                    </td>
-                }
+                <td *ngIf="isAdmin">
+                    <button (click)="deleteUser(user.id)" *ngIf="user.id !== currentUser.id">Delete</button>
+                    <button [routerLink]="['/editUser', user.id]">Edit</button>
+                </td>
             </tr>
-            }
         </tbody>
     </table>
-    @if(isAdmin){
-    <button routerLink="/addUser">Add User</button>
-    }
+    <button *ngIf="isAdmin" routerLink="/addUser">Add User</button>
 </div>

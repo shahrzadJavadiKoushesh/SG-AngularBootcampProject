@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MockDataService } from './mock-data.service';
 import { map, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,24 +9,20 @@ import { map, Observable } from 'rxjs';
 export class AuthService {
 
   private baseUrl = 'http://localhost:3000/api';
-  private tokenKey = 'authToken';
+  private tokenKey!: string; 
+
   private currentUserKey = 'currentUser';
 
-  constructor(private mockdata: MockDataService) { }
+  constructor(public http: HttpClient) { }
 
-  login(username: string, password: string): Observable<{ success: boolean; user?: any; message?: string }> {
-    return this.mockdata.getUsers().pipe(
-      map((users) => {
-        const user = users.find((u) => u.username === username && u.password === password);
-        if (user) {
-          this.setToken('mocked-token');
-          this.setCurrentUser(user);
-          return { success: true, user };
-        } else {
-          return { success: false, message: 'Invalid credentials' };
-        }
-      })
-    );
+  login(username: string, password: string): Observable<any> {
+    return this.http.post<{ sessionId: string }>(`${this.baseUrl}/auth`, { username, password })
+      .pipe(
+        map(response => {
+          this.setToken(response.sessionId);
+          return response;
+        })
+      );
   }
 
   setToken(token: string) {
@@ -38,10 +35,42 @@ export class AuthService {
 
   getCurrentUser(): any {
     const user = localStorage.getItem(this.currentUserKey);
-    if (user){
-      return JSON.parse(user); 
-    } else{
-      return null;
-    }
+    return user ? JSON.parse(user) : null;
   }
+
+  getHeaders(): HttpHeaders {
+    const token = localStorage.getItem(this.tokenKey);
+    return new HttpHeaders({ Authorization: token || '' });
+  }
+
+  getCurrentUserFromApi(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/current`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  addUser(user: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users`, user, {
+      headers: this.getHeaders(),
+    });
+  } 
+  
+  getUserById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/${id}`, {
+      headers: this.getHeaders(),
+    });
+  }
+  
+  updateUser(user: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/users`, user, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  deleteUser(userId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/users/${userId}`, {
+      headers: this.getHeaders(),
+    });
+  }
+  
 }
