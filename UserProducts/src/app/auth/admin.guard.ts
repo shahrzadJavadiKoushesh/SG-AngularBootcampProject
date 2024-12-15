@@ -18,9 +18,15 @@ export class AdminGuard implements CanActivate {
 
     if (currentUser && currentUser.role === 1) {
       return true;
+    } else{
+      const attemptedUrl = route.url[0].path; 
+      console.log(attemptedUrl);
+      if (attemptedUrl === 'addUser') {
+        this.router.navigate(['/usersList']); // Redirect normal user from addUser to usersList
+      } else if (attemptedUrl === 'addProduct') {
+        this.router.navigate(['/productsList']); // Redirect normal user from addProduct to productsList
+      } 
+      return false;
     }
-    
-    this.router.navigate(['/usersList']);
-    return false;
   }
 }

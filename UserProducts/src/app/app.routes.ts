@@ -12,7 +12,8 @@ export const routes: Routes = [
     {path: 'addUser', component: AddUserComponent, canActivate: [AdminGuard]},
     {path: 'usersList', component: UsersListComponent},
     {path: 'editUser/:id', component: EditUserComponent},
-    {path: 'addProduct', component: AddProductComponent},
+    {path: 'addProduct', component: AddProductComponent, canActivate: [AdminGuard]},
     {path: 'productsList', component: ProductsListComponent},
+    
     {path: '**', redirectTo: 'login' },
 ];
