@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MockDataService } from './mock-data.service';
 import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -72,5 +71,11 @@ export class AuthService {
       headers: this.getHeaders(),
     });
   }
+
+  addProduct(product: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/products`, product, {
+      headers: this.getHeaders(),
+    });
+  } 
   
 }
