@@ -18,25 +18,25 @@ export class ProductsListComponent implements OnInit {
   constructor(private mockdata: MockDataService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.isAdmin = this.authService.getCurrentUser()?.role === 'admin';
+    this.isAdmin = this.authService.getCurrentUser()?.role === 1;
     this.currentUser = this.authService.getCurrentUser();
     this.fetchProducts();
   }
 
-  fetchProducts(): void{
-    this.mockdata.getProducts().subscribe((products) => {
-      this.products = products;
-    })
-  }
+  fetchProducts(): void {
+    this.authService.getHeaders();
+    this.authService.http.get<any>('http://localhost:3000/api/products', {
+      headers: this.authService.getHeaders(),
+    }).subscribe({
+      next: (products) => {
+        console.log(products);
 
-  deleteProduct(id: number): void{
-    if (this.isAdmin){
-      this.mockdata.deleteProduct(id).subscribe(() => {
-        console.log("User with id " + id + " deleted");
-        this.fetchProducts();
-      })
-    }
-
+        this.products = Object.values(products);  
+      },
+      error: (err) => {
+        console.error('Error fetching users:', err);
+      }
+    });
   }
 
 }
