@@ -18,7 +18,7 @@ export class UsersListComponent implements OnInit {
   constructor(private mockdata: MockDataService, private authService: AuthService){}
 
   ngOnInit(): void {
-    this.isAdmin = this.authService.getCurrentUser()?.role === 'admin';
+    this.isAdmin = this.authService.getCurrentUser()?.role === 1;
     this.currentUser = this.authService.getCurrentUser();
     this.fetchUsers();
   }

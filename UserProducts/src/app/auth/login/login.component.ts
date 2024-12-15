@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private mockdata: MockDataService, protected router: Router) {
     this.loginForm = this.fb.group({
@@ -23,23 +24,22 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
-      console.log(username);
-      console.log(password);
-
-      this.authService.login(username, password).subscribe((loginResult) => {
-        if (loginResult.success) {
-          if (loginResult.user.role === 'admin') {
-            this.router.navigate(['/usersList']); 
-          } else {
-            // For now redirect both to the users list page
-            this.router.navigate(['/usersList']); 
-          }
-        } else {
-          console.log('Login failed: ' + loginResult.message);
+      console.log('Attempting to login with:', username, password);
+      this.authService.login(username, password).subscribe({
+        next: response => {
+          console.log('Login successful', response);
+          this.authService.setToken(response.sessionId); 
+          this.authService.getCurrentUserFromApi().subscribe(user => {
+            console.log('Current user:', user);
+            this.authService.setCurrentUser(user); 
+            this.router.navigate(['/usersList']);
+          });
+        },
+        error: err => {
+          console.error('Login failed', err);
         }
       });
+
     }
-
   }
-
 }
