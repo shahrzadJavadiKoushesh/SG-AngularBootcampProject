@@ -34,7 +34,7 @@ export class ProductsListComponent implements OnInit {
         this.products = Object.values(products);  
       },
       error: (err) => {
-        console.error('Error fetching users:', err);
+        console.error('Error fetching products:', err);
       }
     });
   }
