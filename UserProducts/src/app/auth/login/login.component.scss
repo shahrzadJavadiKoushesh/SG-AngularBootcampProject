@@ -1,37 +1,71 @@
 .login-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
+    background: linear-gradient(135deg, #6b73ff, #7742cda3);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
 
     form {
-        display: flex;
-        flex-direction: column;
-        width: 300px;
+        background: white;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
 
-        label {
-            margin: 5px 0;
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
         }
 
-        input {
+        .form-group {
+            display: flex;
+            flex-direction: column;
             margin-bottom: 15px;
-            padding: 10px;
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                font-size: 14px;
+                color: #333;
+            }
+            
+            input {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 14px;
+                outline: none;
+                transition: border-color 0.3s ease-in-out;
+            }
+
+            input:focus {
+                border-color: #6b73ff;
+            }
+            
         }
 
         button {
             padding: 10px;
-            background-color: #007bff;
-            color: white;
             border: none;
+            border-radius: 5px;
+            background: #6b73ff;
+            color: white;
+            font-size: 16px;
             cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        button:hover:not(:disabled) {
+            background: #000dff;
         }
     }
 }
-
-
-
-
-
-
-
