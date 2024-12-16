@@ -1,37 +1,40 @@
-<div>
-    <h1>User List</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Code</th>
-                <th>Weight</th>
-                @if(isAdmin){
-                <th>Actions</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @for(product of products; track product.id){
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.code }}</td>
-                <td>{{ product.weight }}</td>
-                @if(isAdmin){
+<div class="user-list-container">
+    <h1>Product List</h1>
+    <div class="table-wrapper">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Weight</th>
+                    @if(isAdmin){
+                    <th>Actions</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for(product of products; track product.id){
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.code }}</td>
+                    <td>{{ product.weight }}</td>
+                    @if(isAdmin){
                     <td>
                         @if(product.id !== currentUser.id ){
-                            <button (click)="deleteProduct(product.id)">Delete</button>
+                        <button class="delete-btn" (click)="deleteProduct(product.id)">Delete</button>
                         }
-                        <button [routerLink]="['/editProduct', product.id]">Edit</button>
+                        <button class="edit-btn" [routerLink]="['/editProduct', product.id]">Edit</button>
                     </td>
+                    }
+                </tr>
                 }
-            </tr>
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+
     @if(isAdmin){
-    <button routerLink="/addProduct">Add Product</button>
+    <button class="add-userr-btn" routerLink="/addProduct">Add Product</button>
     }
 </div>
