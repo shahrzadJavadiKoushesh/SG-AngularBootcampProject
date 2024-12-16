@@ -1,27 +1,33 @@
-<div>
+<div class="user-list-container">
     <h1>User List</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Family Name</th>
-                <th>Username</th>
-                <th>Role</th>
-                <th *ngIf="isAdmin">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users;">
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.role }}</td>
-                <td *ngIf="isAdmin">
-                    <button (click)="deleteUser(user.id)" *ngIf="user.id !== currentUser.id">Delete</button>
-                    <button [routerLink]="['/editUser', user.id]">Edit</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <button *ngIf="isAdmin" routerLink="/addUser">Add User</button>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Family Name</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th *ngIf="isAdmin">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users;">
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.role }}</td>
+                    <td *ngIf="isAdmin">
+                        <button class="edit-btn" [routerLink]="['/editUser', user.id]">
+                            Edit
+                        </button>
+                        <button class="delete-btn" (click)="deleteUser(user.id)" *ngIf="user.id !== currentUser.id">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="add-user-btn" *ngIf="isAdmin" routerLink="/addUser">Add User</button>
 </div>
