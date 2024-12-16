@@ -9,6 +9,10 @@
             <label for="password">Password</label>
             <input id="password" formControlName="password" type="password" placeholder="Enter your password" />
         </div>
+        <div
+            *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].hasError('passwordStrength')">
+            <small>Password must be at least 8 characters long, contain letters and numbers.</small>
+        </div>
         <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>
 </div>

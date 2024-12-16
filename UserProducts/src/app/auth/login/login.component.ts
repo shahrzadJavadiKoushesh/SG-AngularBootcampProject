@@ -3,10 +3,12 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { AuthService } from '../../auth.service';
 import { MockDataService } from '../../mock-data.service';
 import { Router } from '@angular/router';
+import { CustomValidators } from '../../validators';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -17,7 +19,7 @@ export class LoginComponent {
   constructor(private fb: FormBuilder, private authService: AuthService, private mockdata: MockDataService, protected router: Router) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, CustomValidators.passwordStrength]]
     })
   }
 
