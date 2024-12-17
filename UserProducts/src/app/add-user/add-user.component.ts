@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MockDataService } from '../mock-data.service';
 import { Route, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { CustomValidators } from '../validators';
 
 @Component({
   selector: 'app-add-user',
@@ -14,16 +15,15 @@ export class AddUserComponent {
 
   userForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private mockdata: MockDataService, private router: Router, private authService: AuthService){
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService){
     this.userForm = this.fb.group({
-      // later I have to add custom validators
       name: ['', Validators.required],
       familyName: ['', Validators.required],
       role: [, Validators.required],
-      nationalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      phoneNumber: ['', Validators.required],
+      nationalCode: ['', [Validators.required, CustomValidators.nationalCode]],
+      phoneNumber: ['', [Validators.required, CustomValidators.phoneNumber]],
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, CustomValidators.passwordStrength]],
     })
   }
 

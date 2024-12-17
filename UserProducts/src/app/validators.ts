@@ -9,9 +9,27 @@ export class CustomValidators {
         const validLength = value.length >= 8;
 
         if (!hasNumber || !hasLetter || !validLength) {
-            return { passwordStrength: true }; 
+            return { passwordStrength: true };
         }
 
-        return null; 
+        return null;
+    }
+
+    static nationalCode(control: AbstractControl): ValidationErrors | null {
+        const value = control.value || '';
+        const isValid = /^\d{10}$/.test(value);
+        if (isValid){
+            return null;
+        } 
+        return { nationalCode: true };
+    }
+
+    static phoneNumber(control: AbstractControl): ValidationErrors | null {
+        const value = control.value || '';
+        const isValid = /^0\d{10}$/.test(value); 
+        if (isValid){
+            return null ;
+        }
+        return {phoneNumber: true};
     }
 }
