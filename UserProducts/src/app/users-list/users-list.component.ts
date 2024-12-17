@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RolePipe } from '../role.pipe';
 
 @Component({
   selector: 'app-users-list',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, RolePipe],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss'
 })
