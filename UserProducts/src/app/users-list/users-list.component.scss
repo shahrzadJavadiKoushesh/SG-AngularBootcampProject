@@ -58,21 +58,21 @@
                     background: #e74c3c;
                     color: #fff;
                 }
-                
+
                 .delete-btn:hover {
                     background: #c0392b;
                 }
-                
+
                 .edit-btn {
                     background: #3498db;
                     color: #fff;
                     margin-left: 5px;
                 }
-                
+
                 .edit-btn:hover {
                     background: #2980b9;
                 }
-                
+
             }
         }
 
@@ -103,4 +103,9 @@
         background: #218838;
         cursor: pointer;
     }
+}
+
+.actions {
+    display: flex;
+    justify-content: space-evenly;
 }

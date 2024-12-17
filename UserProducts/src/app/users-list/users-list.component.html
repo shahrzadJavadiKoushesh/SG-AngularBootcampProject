@@ -17,7 +17,7 @@
                     <td>{{ user.lastName }}</td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.role }}</td>
-                    <td *ngIf="isAdmin">
+                    <td *ngIf="isAdmin" class="actions">
                         <button class="edit-btn" [routerLink]="['/editUser', user.id]">
                             Edit
                         </button>
