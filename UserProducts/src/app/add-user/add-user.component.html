@@ -1,35 +1,36 @@
-<div class="addUser-container">
+<div class="add-user-container">
+    <h2>Add New User</h2>
     <form [formGroup]="userForm" (ngSubmit)="onSubmitaddUser()">
-        <div>
+        <div class="form-group">
             <label for="name">Name</label>
-            <input id="name" formControlName="name" type="text" />
+            <input id="name" formControlName="name" type="text" placeholder="Enter name" />
         </div>
-        <div>
+        <div class="form-group">
             <label for="familyName">Family Name</label>
-            <input id="familyName" formControlName="familyName" type="text" />
+            <input id="familyName" formControlName="familyName" type="text" placeholder="Enter family name" />
         </div>
-        <div>
-            <label for="role">role</label>
+        <div class="form-group">
+            <label for="role">Role</label>
             <select formControlName="role" id="role">
-                <option value=1>admin</option>
-                <option value=0>user</option>
+                <option value="1">Admin</option>
+                <option value="0">User</option>
             </select>
         </div>
-        <div>
+        <div class="form-group">
             <label for="nationalCode">National Code</label>
-            <input id="nationalCode" formControlName="nationalCode" type="text" />
+            <input id="nationalCode" formControlName="nationalCode" type="text" placeholder="Enter national code" />
         </div>
-        <div>
+        <div class="form-group">
             <label for="phoneNumber">Phone Number</label>
-            <input id="phoneNumber" formControlName="phoneNumber" type="text" />
+            <input id="phoneNumber" formControlName="phoneNumber" type="text" placeholder="Enter phone number" />
         </div>
-        <div>
+        <div class="form-group">
             <label for="username">Username</label>
-            <input id="username" formControlName="username" type="text" />
+            <input id="username" formControlName="username" type="text" placeholder="Choose a username" />
         </div>
-        <div>
+        <div class="form-group">
             <label for="password">Password</label>
-            <input id="password" formControlName="password" type="password" />
+            <input id="password" formControlName="password" type="password" placeholder="Enter password" />
         </div>
         <button type="submit" [disabled]="userForm.invalid">Add User</button>
     </form>

@@ -1,17 +1,17 @@
-<div class="editUser-container">
-    <h1>Edit User</h1>
+<div class="add-user-container">
+    <h2>Edit User</h2>
     <form [formGroup]="userForm" (ngSubmit)="onSubmitEdit()">
-        <div>
+        <div class="form-group">
             <label for="name">Name:</label>
             <input id="name" formControlName="name" type="text" />
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="familyName">Family Name:</label>
             <input id="familyName" formControlName="familyName" type="text" />
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="role">Role:</label>
             <select id="role" formControlName="role">
                 <option [value]=1>Admin</option>
@@ -19,22 +19,22 @@
             </select>
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="nationalCode">National Code:</label>
             <input id="nationalCode" formControlName="nationalCode" type="text" />
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="phoneNumber">Phone Number:</label>
             <input id="phoneNumber" formControlName="phoneNumber" type="text" />
         </div>
 
-        <div class="username">
+        <div class="form-group">
             <label for="username">Username:</label>
             <input id="username" formControlName="username" type="text" >
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="password">Password:</label>
             <input id="password" formControlName="password" type="password" />
         </div>
